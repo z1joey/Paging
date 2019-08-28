@@ -30,7 +30,7 @@ class ContentPageViewController: UIPageViewController {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(turningPage(notification:)), name: .didClick, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(turningPage(notification:)), name: .turnPage, object: nil)
     }
 
     @objc func turningPage(notification: NSNotification) {
@@ -66,7 +66,7 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed, let indexPath = currentIndexPath {
-            NotificationCenter.default.post(name: .turnPage, object: nil, userInfo: ["IndexPath": indexPath])
+            NotificationCenter.default.post(name: .toogleMenu, object: nil, userInfo: ["IndexPath": indexPath])
         }
     }
 

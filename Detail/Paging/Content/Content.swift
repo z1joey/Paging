@@ -40,6 +40,6 @@ let contents: [Content] = {
 }()
 
 extension Notification.Name {
-    static let didClick = Notification.Name("didClickMenu")
     static let turnPage = Notification.Name("turnPage")
+    static let toogleMenu = Notification.Name("toogleMenu")
 }

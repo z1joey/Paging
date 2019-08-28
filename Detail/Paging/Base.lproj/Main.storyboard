@@ -24,7 +24,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="7Wt-uU-Pqf"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PME-ob-PZH">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PME-ob-PZH">
                                     <size key="itemSize" width="140" height="75"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -53,7 +53,7 @@
                                                 </view>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.85684800000000005" green="0.72385299999999997" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="MBM-hC-WRZ" firstAttribute="centerY" secondItem="Y2S-mv-JYW" secondAttribute="centerY" id="3xQ-OT-iTR"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="CaH-Wp-Zh2" secondAttribute="bottom" id="5NM-aK-TtQ"/>
