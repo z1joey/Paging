@@ -10,13 +10,15 @@ import UIKit
 
 class ContentPageViewController: UIPageViewController {
 
-    fileprivate lazy var pages: [UIViewController] = {
+    lazy var pages: [UIViewController] = {
         var pages = [UIViewController]()
         contents.forEach({ (content) in
             pages.append(content.viewController)
         })
         return pages
     }()
+
+    var currentIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,18 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
             return pages[index + 1]
         }
         return nil
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        if let index = pages.firstIndex(of: pendingViewControllers.first!), index < pages.count {
+            currentIndexPath = IndexPath(item: index, section: 0)
+        }
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed, let indexPath = currentIndexPath {
+            NotificationCenter.default.post(name: .turnPage, object: nil, userInfo: ["IndexPath": indexPath])
+        }
     }
 
 }

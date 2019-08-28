@@ -8,16 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController  {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(turnMenu(notification:)), name: .turnPage, object: nil)
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
         collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
+
+    @objc func turnMenu(notification: Notification) {
+        if let indexPath = notification.userInfo?["IndexPath"] as? IndexPath, indexPath.row < contents.count {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        }
     }
 
 }
