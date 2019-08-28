@@ -13,20 +13,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Detail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Paging" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lsv-dc-nWe">
-                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
-                                <color key="backgroundColor" red="0.96560269590000003" green="0.35197234150000001" blue="0.3620824218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="ib1-Mr-MO3"/>
-                                </constraints>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NsP-5l-9f0" userLabel="menu">
-                                <rect key="frame" x="0.0" y="388" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="7Wt-uU-Pqf"/>
@@ -38,7 +31,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuCollectionViewCell" id="Y2S-mv-JYW" customClass="MenuCollectionViewCell" customModule="Detail" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuCollectionViewCell" id="Y2S-mv-JYW" customClass="MenuCollectionViewCell" customModule="Paging" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-2.5" width="140" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -76,12 +69,12 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="OSu-CN-amw" id="seU-ry-aZO"/>
-                                    <outlet property="delegate" destination="OSu-CN-amw" id="4CS-El-pjM"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="4wE-WQ-XL8"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="GXa-mi-fsK"/>
                                 </connections>
                             </collectionView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wwa-qZ-ETJ">
-                                <rect key="frame" x="0.0" y="458" width="414" height="404"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="704"/>
                                 <connections>
                                     <segue destination="2b4-eC-CCg" kind="embed" id="Pol-MV-JnQ"/>
                                 </connections>
@@ -89,15 +82,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lsv-dc-nWe" secondAttribute="trailing" id="0QO-4I-84U"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NsP-5l-9f0" secondAttribute="trailing" id="9oL-a8-lcQ"/>
-                            <constraint firstItem="Lsv-dc-nWe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DFx-Ap-NXW"/>
                             <constraint firstItem="Wwa-qZ-ETJ" firstAttribute="top" secondItem="NsP-5l-9f0" secondAttribute="bottom" id="Hb1-IK-Qal"/>
                             <constraint firstItem="NsP-5l-9f0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="It3-AR-dT8"/>
                             <constraint firstItem="Wwa-qZ-ETJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LfB-pD-k7h"/>
+                            <constraint firstItem="NsP-5l-9f0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="S3M-Bb-zRU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wwa-qZ-ETJ" secondAttribute="bottom" id="TNc-r7-yRB"/>
-                            <constraint firstItem="Lsv-dc-nWe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Umy-1m-7ZZ"/>
-                            <constraint firstItem="NsP-5l-9f0" firstAttribute="top" secondItem="Lsv-dc-nWe" secondAttribute="bottom" id="V7i-bu-uVR"/>
                             <constraint firstItem="Wwa-qZ-ETJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jq2-Io-Nn2"/>
                             <constraint firstAttribute="trailing" secondItem="Wwa-qZ-ETJ" secondAttribute="trailing" id="tqI-jP-roH"/>
                             <constraint firstItem="Wwa-qZ-ETJ" firstAttribute="top" secondItem="NsP-5l-9f0" secondAttribute="bottom" id="vMB-Ao-Ggk"/>
@@ -107,16 +97,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="JVM-lw-PRW"/>
+                    <connections>
+                        <outlet property="collectionView" destination="NsP-5l-9f0" id="tNW-Pl-u5F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="OSu-CN-amw" customClass="MenuController" customModule="Detail" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="963.76811594202911" y="138.61607142857142"/>
         </scene>
         <!--Content Page View Controller-->
         <scene sceneID="PYg-Vp-qss">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2b4-eC-CCg" customClass="ContentPageViewController" customModule="Detail" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2b4-eC-CCg" customClass="ContentPageViewController" customModule="Paging" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lld-pe-kfi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1833" y="139"/>

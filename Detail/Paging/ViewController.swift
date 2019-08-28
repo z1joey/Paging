@@ -1,5 +1,5 @@
 //
-//  MenuController.swift
+//  ViewController.swift
 //  Detail
 //
 //  Created by joey on 8/27/19.
@@ -8,11 +8,21 @@
 
 import UIKit
 
-class MenuController: NSObject {
-    // fileprivate let titles = ["title1", "title2", "title3"]
+class ViewController: UIViewController {
+
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
+
 }
 
-extension MenuController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contents.count
@@ -28,13 +38,10 @@ extension MenuController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCollectionViewCell", for: indexPath) as? MenuCollectionViewCell {
             cell.isSelected = cell.isSelected ? false : true
-            //NotificationCenter.default.post(name: .didClick, object: self)
             NotificationCenter.default.post(name: .didClick, object: nil, userInfo: ["IndexPath": indexPath])
         }
     }
 
 }
 
-extension Notification.Name {
-    static let didClick = Notification.Name("didClickMenu")
-}
+

@@ -38,3 +38,7 @@ let contents: [Content] = {
 
     return contents
 }()
+
+extension Notification.Name {
+    static let didClick = Notification.Name("didClickMenu")
+}
