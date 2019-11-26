@@ -13,6 +13,7 @@
 		6572BC22238C38A6004611D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6572BC21238C38A6004611D1 /* Assets.xcassets */; };
 		6572BC25238C38A6004611D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6572BC23238C38A6004611D1 /* LaunchScreen.storyboard */; };
 		6572BC2B238C3A48004611D1 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6572BC2A238C3A48004611D1 /* PageViewController.swift */; };
+		65F6F293238D871D001844AC /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6F292238D871D001844AC /* Operator.swift */; };
 		C25A648987FDFA1C08D7F096 /* Pods_RxPaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AAF2C42FFABAA23B13A59C /* Pods_RxPaging.framework */; };
 		D40640842314FEF7009E14A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40640832314FEF7009E14A0 /* AppDelegate.swift */; };
 		D40640862314FEF7009E14A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40640852314FEF7009E14A0 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 		6572BC24238C38A6004611D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6572BC26238C38A6004611D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6572BC2A238C3A48004611D1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		65F6F292238D871D001844AC /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		73573F76BCB51596424A6251 /* Pods-RxPaging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxPaging.release.xcconfig"; path = "Target Support Files/Pods-RxPaging/Pods-RxPaging.release.xcconfig"; sourceTree = "<group>"; };
 		90813E6252A47F5551598D14 /* Pods_Paging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Paging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AAF2C42FFABAA23B13A59C /* Pods_RxPaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxPaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				6572BC18238C38A5004611D1 /* AppDelegate.swift */,
+				65F6F292238D871D001844AC /* Operator.swift */,
 				6572BC1C238C38A5004611D1 /* ViewController.swift */,
 				6572BC2A238C3A48004611D1 /* PageViewController.swift */,
 				6572BC1E238C38A5004611D1 /* Main.storyboard */,
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6572BC2B238C3A48004611D1 /* PageViewController.swift in Sources */,
+				65F6F293238D871D001844AC /* Operator.swift in Sources */,
 				6572BC1D238C38A5004611D1 /* ViewController.swift in Sources */,
 				6572BC19238C38A5004611D1 /* AppDelegate.swift in Sources */,
 			);

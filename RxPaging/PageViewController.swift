@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class PageViewController: UIPageViewController {
     
@@ -19,6 +21,10 @@ class PageViewController: UIPageViewController {
         
         return [red, yellow]
     }()
+    
+    var index = BehaviorRelay<Int>(value: 0)
+    
+    let bag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,6 @@ class PageViewController: UIPageViewController {
         // Do any additional setup after loading the view.
         self.delegate = self
         self.dataSource = self
-
         if let firstVC = pages.first {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
@@ -38,6 +43,7 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let index = pages.firstIndex(of: viewController), index > 0 {
+            self.index.accept(index - 1)
             return pages[index - 1]
         }
         return nil
@@ -45,6 +51,7 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let index = pages.firstIndex(of: viewController), index < pages.count - 1 {
+            self.index.accept(index + 1)
             return pages[index + 1]
         }
         return nil
