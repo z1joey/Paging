@@ -40,7 +40,7 @@ class ViewController: UIViewController {
 //            }
 //        ).disposed(by: bag)
         
-        (segmentedControl.rx.selectedSegmentIndex <-> self.index).disposed(by: bag)
+        (segmentedControl.rx.selectedSegmentIndex <-> index).disposed(by: bag)
         (child.index <-> self.index).disposed(by: bag)
         
 //        index.bind(to: segmentedControl.rx.selectedSegmentIndex)

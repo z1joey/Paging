@@ -35,6 +35,20 @@ class PageViewController: UIPageViewController {
         if let firstVC = pages.first {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        
+//        index.subscribe(
+//            onNext: {
+//                let vc = self.pages[$0]
+//                if let pageIndex = self.pages.firstIndex(where: { vc == $0 }) {
+//                    if self.index.value > $0 {
+//                        self.setViewControllers([vc], direction: .forward, animated: true, completion: nil)
+//                    } else {
+//                        self.setViewControllers([vc], direction: .forward, animated: true, completion: nil)
+//                    }
+//                }
+//
+//            }
+//        ).disposed(by: bag)
     }
     
 }
