@@ -30,6 +30,7 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tz2-hN-dHR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="DNg-K7-TBv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="W1G-Uz-9b7" secondAttribute="bottom" id="OOM-DS-rWY"/>
@@ -51,7 +52,7 @@
         <!--Page View Controller-->
         <scene sceneID="B94-jc-jWJ">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="NzH-jd-tel" customClass="PageViewController" customModule="RxPaging" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="NzH-jd-tel" customClass="PageViewController" customModule="RxPaging" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTL-qJ-Ife" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1136" y="139"/>

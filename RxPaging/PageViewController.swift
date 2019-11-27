@@ -28,59 +28,55 @@ class PageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.delegate = self
-        self.dataSource = self
-        if let firstVC = pages.first {
-            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
-        }
-        
-//        index.subscribe(
-//            onNext: {
-//                let vc = self.pages[$0]
-//                if let pageIndex = self.pages.firstIndex(where: { vc == $0 }) {
-//                    if self.index.value > $0 {
-//                        self.setViewControllers([vc], direction: .forward, animated: true, completion: nil)
-//                    } else {
-//                        self.setViewControllers([vc], direction: .forward, animated: true, completion: nil)
-//                    }
-//                }
-//
-//            }
-//        ).disposed(by: bag)
+        setupRxPaging()
+        setupGestures()
     }
-    
+
 }
 
-extension PageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+fileprivate extension PageViewController {
 
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let index = pages.firstIndex(of: viewController), index > 0 {
-            self.index.accept(index - 1)
-            return pages[index - 1]
-        }
-        return nil
+    func setupRxPaging() {
+        index
+            .map { (old: 0, new: $0) }
+            .scan((old: 0, new: 0)) { previous, current in
+                return (old: previous.new, new: current.new)
+            }
+            .subscribe(
+                onNext: {
+                    self.setPage(index: $0)
+                }
+            )
+            .disposed(by: bag)
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let index = pages.firstIndex(of: viewController), index < pages.count - 1 {
-            self.index.accept(index + 1)
-            return pages[index + 1]
-        }
-        return nil
+    func setupGestures() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        if let index = pages.firstIndex(of: pendingViewControllers.first!), index < pages.count {
-            //currentIndexPath = IndexPath(item: index, section: 0)
+    func setPage(index: (old: Int, new: Int)) {
+        let page = pages[index.new]
+        if index.new > index.old {
+            setViewControllers([page], direction: .forward, animated: true, completion: nil)
+        } else {
+            setViewControllers([page], direction: .reverse, animated: true, completion: nil)
         }
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
+        var new = 0
+        if gesture.direction == .left {
+            new = (index.value + 1) > (pages.count - 1) ? (pages.count - 1) : (index.value + 1)
+        } else if gesture.direction == .right {
+            new = (index.value - 1) < 0 ? 0 : (index.value - 1)
         }
+        index.accept(new)
     }
 
 }

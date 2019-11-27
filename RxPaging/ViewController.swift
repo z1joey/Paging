@@ -33,18 +33,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-                        
-//        index.subscribe(
-//            onNext: {
-//                print($0)
-//            }
-//        ).disposed(by: bag)
-        
+
         (segmentedControl.rx.selectedSegmentIndex <-> index).disposed(by: bag)
         (child.index <-> self.index).disposed(by: bag)
-        
-//        index.bind(to: segmentedControl.rx.selectedSegmentIndex)
-//             .disposed(by: bag)
+
+        index.subscribe(
+            onNext: {
+                self.segmentedControl.selectedSegmentIndex = $0
+            },
+            onCompleted: {
+                print("Completed")
+            },
+            onDisposed: {
+                print("Disposed")
+            }
+        ).disposed(by: bag)
     }
     
 }
