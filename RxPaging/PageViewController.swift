@@ -29,7 +29,7 @@ class PageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRxPaging()
-        setupGestures()
+        setupRxGestures()
     }
 
 }
@@ -50,14 +50,29 @@ fileprivate extension PageViewController {
             .disposed(by: bag)
     }
 
-    func setupGestures() {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    func setupRxGestures() {
+        let swipeLeft = UISwipeGestureRecognizer()
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
 
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        let swipeRight = UISwipeGestureRecognizer()
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
+
+        Observable.of(swipeLeft.rx.event, swipeRight.rx.event)
+            .merge()
+            .subscribe(onNext: {
+                var new = 0
+                let old = self.index.value
+                if $0.direction == .left {
+                    new = (old + 1) > (self.pages.count - 1) ? (self.pages.count - 1) : (old + 1)
+                }
+                if $0.direction == .right {
+                    new = (old - 1) < 0 ? 0 : (old - 1)
+                }
+                self.index.accept(new)
+            })
+            .disposed(by: bag)
     }
 
     func setPage(index: (old: Int, new: Int)) {
@@ -69,14 +84,14 @@ fileprivate extension PageViewController {
         }
     }
 
-    @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
-        var new = 0
-        if gesture.direction == .left {
-            new = (index.value + 1) > (pages.count - 1) ? (pages.count - 1) : (index.value + 1)
-        } else if gesture.direction == .right {
-            new = (index.value - 1) < 0 ? 0 : (index.value - 1)
-        }
-        index.accept(new)
-    }
+//    func handleGesture(gesture: UISwipeGestureRecognizer) {
+//        var new = 0
+//        if gesture.direction == .left {
+//            new = (index.value + 1) > (pages.count - 1) ? (pages.count - 1) : (index.value + 1)
+//        } else if gesture.direction == .right {
+//            new = (index.value - 1) < 0 ? 0 : (index.value - 1)
+//        }
+//        index.accept(new)
+//    }
 
 }
