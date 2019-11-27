@@ -35,19 +35,28 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         (segmentedControl.rx.selectedSegmentIndex <-> index).disposed(by: bag)
-        (child.index <-> self.index).disposed(by: bag)
+        //(child.index <-> self.index).disposed(by: bag)
 
-        index.subscribe(
-            onNext: {
-                self.segmentedControl.selectedSegmentIndex = $0
-            },
-            onCompleted: {
-                print("Completed")
-            },
-            onDisposed: {
-                print("Disposed")
+        Observable.of(self.index, child.index)
+            .merge()
+            .map { (old: 0, new: $0) }
+            .scan((old: 0, new: 0)) { previous, current in
+                return (old: previous.new, new: current.new)
             }
-        ).disposed(by: bag)
+            .subscribe(
+                onNext: {
+                    print($0)
+                    self.segmentedControl.selectedSegmentIndex = $0.new
+                    self.child.setPage(index: $0)
+                },
+                onCompleted: {
+                    print("Completed")
+                },
+                onDisposed: {
+                    print("Disposed")
+                }
+            )
+            .disposed(by: bag)
     }
     
 }
